@@ -16,9 +16,9 @@ static void uart_receive_callback(const struct device *dev, void *user_data)
             rx_data.buffer[rx_data.index++] = c;
             if (c == '\n') {
                 rx_data.buffer[rx_data.index] = '\0'; // Null-terminate
-                // Process the received line (for example, print it)
-                printk("Received: %s", rx_data.buffer);
                 rx_data.index = 0; // Reset for next line
+                /** Handle command, for now print*/
+                printk("Received: %s", rx_data.buffer);
             }
         } else {
             // Buffer overflow, reset index
@@ -34,12 +34,12 @@ static void uart_send_data(const struct device *dev, const char *data, size_t le
     printk("%s", data);
 }
 
-const struct telemetry_comm_interface uart_comm_interface = {
+struct telemetry_comm_interface uart_comm_interface = {
     .recv = uart_receive_callback,
     .send = uart_send_data,
 };
 
-const struct telemetry_comm_interface *get_uart_comm_interface(void)
+struct telemetry_comm_interface *get_uart_comm_interface(void)
 {
     return &uart_comm_interface;
 }
