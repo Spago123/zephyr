@@ -1,0 +1,25 @@
+# Source Zephyr's Kconfig
+source "Kconfig.zephyr"
+
+# Application-specific configuration
+menu "Telemetry Module Configuration"
+
+config TELEMETRY_ENABLE
+	bool "Enable telemetry system"
+	default y
+	help
+	  Enables the variable registry and telemetry tasks.
+
+config TELEMETRY_INTERVAL_MS
+	int "Telemetry sending interval (ms)"
+	default 1000
+	depends on TELEMETRY_ENABLE
+
+config TELEMETRY_VARIABLE_LIST_FILE
+	string "Path to variable list header"
+	default "variable_list_example.h"
+	help
+	  Specify the path to the variable list header defining VAR_ENTRY macros.
+	  Example: "variable_list_example.h"
+
+endmenu
