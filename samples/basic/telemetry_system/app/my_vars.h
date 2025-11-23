@@ -1,3 +1,5 @@
 VAR_ENTRY(VAR_TEMP,  temperature, "temp")
 VAR_ENTRY(VAR_PRESS, pressure,  "press")
 VAR_ENTRY(VAR_HUM,   humidity,  "hum")
+VAR_ENTRY(LED0_STATUS, led0_status, "led0_status")
+VAR_ENTRY(LED1_STATUS, led1_status, "led1_status")

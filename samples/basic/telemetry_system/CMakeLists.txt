@@ -22,7 +22,7 @@ endif()
 # Add source files
 target_sources(app PRIVATE 
     src/main.c
-    src/uart_communication.c
+    src/command_parser.c
     src/registry.c
     src/telemetry.c
 )

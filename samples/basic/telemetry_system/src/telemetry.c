@@ -36,4 +36,4 @@ void telemetry_sender_task(void *a, void *b, void *c) {
     }
 }
 
-K_THREAD_DEFINE(telemetry_sender_tid, 1024, telemetry_sender_task, NULL, NULL, NULL, 5, 0, 0);
+// K_THREAD_DEFINE(telemetry_sender_tid, 1024, telemetry_sender_task, NULL, NULL, NULL, 5, 0, 0);
