@@ -2,9 +2,7 @@
 #include <zephyr/drivers/uart.h>
 #include <zephyr/sys/printk.h>
 #include <zephyr/drivers/gpio.h>
-#include "communication_interface.h"
-#include "registry.h"
-#include "command_parser.h"
+#include "command_processor.h"
 #include <math.h>
 
 float temperature = 25.5f;
@@ -35,7 +33,7 @@ static void uart_receive_callback(const struct device *dev, void *user_data)
             rx_data.buffer[rx_data.index++] = c;
             if (c == '\n') {
                 rx_data.buffer[rx_data.index] = '\0'; // Null-terminate
-                command_parser_process_data(&comm_interface, rx_data.buffer, rx_data.index);
+                command_processor_submit(&comm_interface, rx_data.buffer, rx_data.index);
                 rx_data.index = 0; // Reset for next line
             }
         } else {
@@ -90,6 +88,8 @@ int main(void)
     uart_irq_callback_set(uart, comm_interface.recv);
     uart_irq_rx_enable(uart);
     register_telemetry_sender(&comm_interface);
+
+    command_processor_init();
     
     printk("Telemetry System Started. Waiting for data...\n");
     

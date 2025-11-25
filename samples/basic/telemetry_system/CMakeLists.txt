@@ -25,4 +25,5 @@ target_sources(app PRIVATE
     src/command_parser.c
     src/registry.c
     src/telemetry.c
+    src/command_processor.c
 )
