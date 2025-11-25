@@ -3,17 +3,17 @@
 Interactive IPython shell for telemetry system communication.
 
 Usage:
-    python interactive_shell.py [--port PORT] [--baudrate BAUDRATE]
-    python interactive_shell.py --interactive
+    python ipy_shell.py [--port PORT] [--baudrate BAUDRATE]
+    python ipy_shell.py --interactive
     
 Examples:
-    python interactive_shell.py --port /dev/ttyUSB0 --baudrate 115200
-    python interactive_shell.py -i
+    python ipy_shell.py --port /dev/ttyUSB0 --baudrate 115200
+    python ipy_shell.py -i
 """
 
 import sys
 import argparse
-from telemetry import TelemetryUARTClient, TelemetryCommand
+from telemetry import TelemetryUARTClient
 
 
 def get_interactive_config():

@@ -256,18 +256,24 @@ class TelemetryUARTClient:
         response = self.send_command(TelemetryCommand.SET_VARIABLE, args)
         return response.strip() == "OK"
     
-    def set_variables(self, id_value_pairs: dict) -> bool:
+    def set_variables(self, variables_to_set: list, values_to_set: list) -> bool:
         """
         Set multiple variables at once.
         
         Args:
-            id_value_pairs: Dictionary mapping variable IDs to values
+            variables_to_set: List of variable IDs
+            values_to_set: List of corresponding values
             
         Returns:
             True if successful, False otherwise
         """
+        if len(variables_to_set) != len(values_to_set):
+            raise ValueError("variables_to_set and values_to_set must have the same length")
+
         # Build format: "0:25.5;1:60.2;2:1013.25"
-        args = ';'.join(f"{id}:{value}" for id, value in id_value_pairs.items())
+        args = ';'.join(f"{var_id}:{value}" 
+                        for var_id, value in zip(variables_to_set, values_to_set))
+
         response = self.send_command(TelemetryCommand.SET_VARIABLE, args)
         return response.strip() == "OK"
                 
