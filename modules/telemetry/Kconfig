@@ -1,0 +1,5 @@
+menu "Telemetry module"
+
+source "modules/telemetry/Kconfig.telemetry"
+
+endmenu

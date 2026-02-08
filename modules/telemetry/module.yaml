@@ -1,0 +1,4 @@
+name: telemetry
+build:
+  cmake: zephyr
+  kconfig: zephyr/Kconfig

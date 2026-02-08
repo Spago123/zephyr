@@ -396,6 +396,9 @@ manifest:
     - name: zcbor
       revision: 9164bd18dcd88ff9d9ef98279501fc1093571017
       path: modules/lib/zcbor
+    - name: telemetry
+      path: modules/telemetry
+      revision: main
   # zephyr-keep-sorted-stop
 
   self:
